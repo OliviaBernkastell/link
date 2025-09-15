@@ -4,7 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Kinerja Pegawai</title>
+    <title>Entri KiP App</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2d6a4f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Entri KiP App">
+    <meta name="description" content="Aplikasi untuk melacak dan mengelola kinerja pegawai dengan mudah">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzJkNmE0ZiIvPgo8cGF0aCBkPSJNOSAxMEgxN1YxMkg5VjEwWiIgZmlsbD0id2hpdGUiLz4KPHA+YXRoIGQ9Ik05IDE0SDE5VjE2SDlWMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOSAxOEgxNVYyMEg5VjE4WiIgZmlsbD0id2hpdGUiLz4KPHA+YXRoIGQ9Ik05IDIySDE5VjI0SDlWMjJaIiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSIyMiIgY3k9IjEyIiByPSIzIiBmaWxsPSIjNTJiNzg4Ii8+CjxjaXJjbGUgY3g9IjIyIiBjeT0iMjAiIHI9IjMiIGZpbGw9IiM1MmI3ODgiLz4KPC9zdmc+">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiMyZDZhNGYiLz4KPHA+YXRoIGQ9Ik01MCA1NUg5NVY2N0g1MFY1NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01MCA3OEgxMDVWOTBINTBWNzhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTAgMTAxSDg1VjExM0g1MFYxMDFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTAgMTI0SDEwNVYxMzZINTBWMTI0WiIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTIzIiBjeT0iNjciIHI9IjE3IiBmaWxsPSIjNTJiNzg4Ii8+CjxjaXJjbGUgY3g9IjEyMyIgY3k9IjExMyIgcj0iMTciIGZpbGw9IiM1MmI3ODgiLz4KPC9zdmc+">
+
+    <!-- Manifest -->
+    <link rel="manifest"
+        href="data:application/json;base64,ewogICJuYW1lIjogIkVudHJpIEtpUCBBcHAiLAogICJzaG9ydF9uYW1lIjogIkVudHJpIEtpUCIsCiAgImRlc2NyaXB0aW9uIjogIkFwbGlrYXNpIHVudHVrIG1lbGFjYWsgZGFuIG1lbmdlbG9sYSBraW5lcmphIHBlZ2F3YWkgZGVuZ2FuIG11ZGFoIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyZDZhNGYiLAogICJ0aGVtZV9jb2xvciI6ICIjMmQ2YTRmIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lnZG1sbGQwSnZlRDBpTUNBd0lERTRNQ0F4T0RBaUlHWnBiR3c5SW01dmJtVWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStDanh5WldOMElIZHBaSFJvUFNJeE9EQWlJR2hsYVdkb2REMGlNVGd3SWlCeWVEMGlOREFpSUdacGJHdzlJaU15WkRaaE5HWWlMejRLUEhCaGRHZ2daRDBpVFRVd0lEVTFTRGsxVmpZM1NEVXdWalUxV2lJZ1ptbHNiRDBpZDJocGRHVWlMejRLUEhCaGRHZ2daRDBpVFRVd0lEYzRTREV3TlVZNU1FZzFNRlkzT0ZvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p4d1lYUm9JR1E5SWswMU1DQXhNREZJT0RVMU1URkVRek5JTlRCV01URkJXaUlnWm1sc2JEMGlkMmhwZEdVaUx6NEtQSEJoZEdnZ1pEMGlUVFV3SUFFMU1VZ3hNRFY2VkVFeU5FZzFNRlk1TjBoYUlpQm1hV3hzUFNKM2FHbDBaU0l2UGdvOFkybHlZMnhsSUdONFBTSXhNak1pSUdONVBTSTJOeUlnY2owaU1UY2lJR1pwYkd3OUlpTTFNbUkzT0RnaUx6NEtQR05wY21Oc1pTQmplRDBpTVRJeklpQmplVDBpTVRFeklpQnlQU0l4TnlJZ1ptbHNiRDBpSXpVeVlqYzRPQ0l2UGdvOEwyOTJaejQ9IiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdkbWxsZDBKdmVEMGlNQ0F3SUFFNU1DQTFPVEFpSUdacGJHdzlJbTV2Ym1VaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK0NqeHlaV04wSUhkcFpIUm9QU0kxTVRJaUlHaGxhV2RvZEQwaU5URXlJaUJ5ZUQwaU1URXlJaUJtYVd4c1BTSWpNbVEyWVRSbUlpOCtDanhvWVhSb0lHUTlJazB4TkRRZ01USTFTRGN6TkZZeU1qUklNVFEwVmpFNU5Vb2lJR1pwYkd3OUluZG9hWFJsSWk4K0NqeHdZWFJvSUdROUlrMHhORFFnTWprNFNESTVOMVl6T0RoSU1UUTBWakl6TjFvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p4d1lYUmlJR1E5SWsweE5EUWdNemN5U0RJeE5XWTJOVUkxU0RFME5GWXpORk5hSWlCbWFXeHNQU0ozYUdsMFpTSXZQZ284Y0dGMGFDQmtQU0pOTVRRMElEUXpSaE16TnpZOVNEWXpNa1kyTkRGSU1UUTBWalF6UTFvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p4amFYSmpiR1VnWTNnOUlqTWtNU0lnWTNrOUlqWXlOaUlnY2owaU5Ua2lJR1pwYkd3OUlpTTJOall6WTJJaUx6NEtQR05wY21Oc1pTQmplRDBpTXpBeElpQmplVDBpTmpJMklpQnlQU0kxT1NJZ1ptbHNiRDBpSXpZM05qTmpZaUl2UGdvOEwyOTJaejQ9IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -80,6 +101,27 @@
         .header-content {
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .app-logo {
+            width: 64px;
+            height: 64px;
+            background: var(--white);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            fill: var(--primary-main);
         }
 
         .header h1 {
@@ -87,6 +129,60 @@
             font-weight: 700;
             margin-bottom: 12px;
             letter-spacing: -0.025em;
+        }
+
+        /* PWA Install Button */
+        .pwa-install-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: none;
+        }
+
+        .pwa-install-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(45, 106, 79, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            font-family: inherit;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pwa-install-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(45, 106, 79, 0.4);
+        }
+
+        .pwa-install-button .close-btn {
+            margin-left: 8px;
+            padding: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .pwa-install-button .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .main-content {
@@ -215,7 +311,7 @@
             transform: translateY(-50%) rotate(180deg);
         }
 
-        /* Loading indicator - new and improved */
+        /* Loading indicator */
         .loading-indicator {
             position: absolute;
             right: 12px;
@@ -470,6 +566,74 @@
             color: var(--gray-500);
         }
 
+        /* Paste area styles */
+        .paste-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            border: 2px dashed var(--gray-300);
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            outline: none;
+        }
+
+        .paste-area:hover {
+            border-color: var(--primary-main);
+            background: var(--very-light);
+        }
+
+        .paste-area.paste-ready {
+            border-color: var(--primary-main);
+            background: var(--very-light);
+            transform: scale(1.02);
+        }
+
+        .paste-area.paste-focused {
+            border-color: var(--primary-main);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        }
+
+        .paste-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .paste-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 4px;
+        }
+
+        .paste-hint {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+
+        .paste-shortcut {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            background: var(--gray-100);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
         /* Photo capture area */
         .photo-capture-area {
             text-align: center;
@@ -714,6 +878,11 @@
                 font-size: 2rem;
             }
 
+            .header-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+
             .main-content {
                 padding: 24px 20px;
             }
@@ -739,21 +908,72 @@
 
             .upload-tab {
                 font-size: 0.8rem;
-                padding: 10px 12px;
+                padding: 10px 8px;
             }
 
             .dropdown-list {
                 max-height: 150px;
+            }
+
+            .pwa-install-container {
+                left: 16px;
+                right: 16px;
+                transform: none;
+            }
+
+            .pwa-install-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .upload-mode-tabs {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+
+            .upload-tab {
+                padding: 8px 12px;
+            }
+
+            .upload-tab:nth-child(3) {
+                grid-column: 1 / -1;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- PWA Install Prompt -->
+    <div class="pwa-install-container" id="pwa-install-container">
+        <button class="pwa-install-button" id="pwa-install-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5,20H19V18H5M19,9H15L9,15H13V3H11V15H7L13,21L19,15Z" />
+            </svg>
+            Install Entri KiP App
+            <button class="close-btn" id="pwa-close-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                </svg>
+            </button>
+        </button>
+    </div>
+
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>Aplikasi Kinerja Pegawai</h1>
+                <div class="app-logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M14,6V4H10V6H9A1,1 0 0,0 8,7V19A1,1 0 0,0 9,20H15A1,1 0 0,0 16,19V7A1,1 0 0,0 15,6H14M12,9A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 12,12A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 12,9Z" />
+                        <circle cx="18" cy="9" r="3" fill="#52b788" />
+                        <circle cx="18" cy="15" r="3" fill="#52b788" />
+                    </svg>
+                </div>
+                <div>
+                    <h1>Entri KiP App</h1>
+                </div>
             </div>
         </div>
 
@@ -894,6 +1114,13 @@
                                     </svg>
                                     File
                                 </button>
+                                <button type="button" class="upload-tab" data-mode="paste">
+                                    <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
+                                        <path
+                                            d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
+                                    </svg>
+                                    Paste
+                                </button>
                                 <button type="button" class="upload-tab" data-mode="photo">
                                     <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
                                         <path
@@ -921,6 +1148,21 @@
                                     </div>
                                     <div class="file-upload-text">Klik untuk upload atau drag & drop</div>
                                     <div class="file-upload-hint">Semua jenis file diperbolehkan (max 10MB)</div>
+                                </div>
+                            </div>
+
+                            <!-- Paste Area -->
+                            <div class="upload-content" id="paste-content">
+                                <div class="paste-area" id="paste-area" tabindex="0">
+                                    <div class="paste-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
+                                        </svg>
+                                    </div>
+                                    <div class="paste-text">Klik area ini lalu paste gambar</div>
+                                    <div class="paste-hint">Ideal untuk screenshot atau gambar dari snipping tool</div>
+                                    <div class="paste-shortcut">Ctrl+V / Cmd+V</div>
                                 </div>
                             </div>
 
@@ -1002,11 +1244,20 @@
         // GANTI URL INI DENGAN URL GOOGLE APPS SCRIPT ANDA
         const scriptURL = 'https://script.google.com/macros/s/AKfycby1oWCFNPr1SoDGMBQh_0XRLx37hS0PJ83vIdLvMsaAM4sCjxRqEkVLMdWMxTBql8A03A/exec';
 
+        // PWA Variables
+        let deferredPrompt;
+        let isInstallPromptShown = false;
+
         // DOM Elements
         const form = document.getElementById('activity-form');
         const dateToggle = document.getElementById('date-toggle');
         const dateInputs = document.getElementById('date-inputs');
         const tanggal2Container = document.getElementById('tanggal2-container');
+
+        // PWA Elements
+        const pwaInstallContainer = document.getElementById('pwa-install-container');
+        const pwaInstallButton = document.getElementById('pwa-install-button');
+        const pwaCloseBtn = document.getElementById('pwa-close-btn');
 
         // Searchable dropdown elements
         const rencanaDropdown = document.getElementById('rencana-dropdown');
@@ -1019,6 +1270,7 @@
         const uploadContents = document.querySelectorAll('.upload-content');
         const fileUploadArea = document.getElementById('file-upload-area');
         const fileUpload = document.getElementById('file-upload');
+        const pasteArea = document.getElementById('paste-area');
         const photoCapture = document.getElementById('photo-capture');
         const captureBtn = document.getElementById('capture-btn');
         const filePreview = document.getElementById('file-preview');
@@ -1036,6 +1288,66 @@
         let rencanaKinerjaOptions = [];
         let filteredOptions = [];
         let selectedIndex = -1;
+
+        // PWA Installation Logic
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        function isStandalone() {
+            return window.matchMedia('(display-mode: standalone)').matches ||
+                window.navigator.standalone === true;
+        }
+
+        function isInstallPromptDismissed() {
+            return localStorage.getItem('pwa-install-dismissed') === 'true';
+        }
+
+        function dismissInstallPrompt() {
+            localStorage.setItem('pwa-install-dismissed', 'true');
+            pwaInstallContainer.style.display = 'none';
+        }
+
+        // Listen for PWA install prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Show install button if on mobile and not already installed
+            if (isMobile() && !isStandalone() && !isInstallPromptDismissed()) {
+                setTimeout(() => {
+                    pwaInstallContainer.style.display = 'block';
+                    isInstallPromptShown = true;
+                }, 3000); // Show after 3 seconds
+            }
+        });
+
+        // Handle PWA install button click
+        pwaInstallButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+
+                if (outcome === 'accepted') {
+                    showNotification('Entri KiP App berhasil diinstall!', 'success');
+                }
+
+                deferredPrompt = null;
+                pwaInstallContainer.style.display = 'none';
+            }
+        });
+
+        // Handle close button
+        pwaCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dismissInstallPrompt();
+        });
+
+        // Hide install prompt if app is already installed
+        window.addEventListener('appinstalled', () => {
+            pwaInstallContainer.style.display = 'none';
+            showNotification('Entri KiP App berhasil diinstall!', 'success');
+        });
 
         // Searchable Dropdown Functionality
         class SearchableDropdown {
@@ -1259,6 +1571,11 @@
                 filePreview.style.display = 'none';
                 fileUpload.value = '';
                 photoCapture.value = '';
+
+                // Focus paste area if paste mode
+                if (uploadMode === 'paste') {
+                    setTimeout(() => pasteArea.focus(), 100);
+                }
             });
         });
 
@@ -1289,6 +1606,88 @@
         fileUpload.addEventListener('change', (e) => {
             if (e.target.files[0]) {
                 handleFileSelection(e.target.files[0]);
+            }
+        });
+
+        // Paste functionality
+        pasteArea.addEventListener('click', () => {
+            pasteArea.focus();
+        });
+
+        pasteArea.addEventListener('focus', () => {
+            pasteArea.classList.add('paste-focused');
+        });
+
+        pasteArea.addEventListener('blur', () => {
+            pasteArea.classList.remove('paste-focused');
+        });
+
+        pasteArea.addEventListener('paste', async (e) => {
+            e.preventDefault();
+
+            try {
+                let clipboardData = e.clipboardData || window.clipboardData;
+                let items = clipboardData.items;
+
+                for (let i = 0; i < items.length; i++) {
+                    let item = items[i];
+
+                    if (item.type.indexOf('image') !== -1) {
+                        let blob = item.getAsFile();
+
+                        if (blob) {
+                            // Create a file from the blob with a timestamp name
+                            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                            const file = new File([blob], `pasted-image-${timestamp}.png`, {
+                                type: 'image/png'
+                            });
+
+                            handleFileSelection(file);
+                            showNotification('Gambar berhasil di-paste!', 'success');
+                            return;
+                        }
+                    }
+                }
+
+                showNotification('Tidak ada gambar yang ditemukan di clipboard. Pastikan Anda telah menyalin gambar terlebih dahulu.', 'warning');
+
+            } catch (error) {
+                console.error('Error pasting:', error);
+                showNotification('Gagal memproses gambar dari clipboard.', 'error');
+            }
+        });
+
+        // Enhanced clipboard API support
+        pasteArea.addEventListener('keydown', async (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
+                e.preventDefault();
+
+                try {
+                    if (navigator.clipboard && navigator.clipboard.read) {
+                        const clipboardItems = await navigator.clipboard.read();
+
+                        for (const clipboardItem of clipboardItems) {
+                            for (const type of clipboardItem.types) {
+                                if (type.startsWith('image/')) {
+                                    const blob = await clipboardItem.getType(type);
+                                    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                                    const file = new File([blob], `pasted-image-${timestamp}.png`, {
+                                        type: blob.type
+                                    });
+
+                                    handleFileSelection(file);
+                                    showNotification('Gambar berhasil di-paste!', 'success');
+                                    return;
+                                }
+                            }
+                        }
+
+                        showNotification('Tidak ada gambar yang ditemukan di clipboard.', 'warning');
+                    }
+                } catch (error) {
+                    console.error('Error accessing clipboard:', error);
+                    showNotification('Gagal mengakses clipboard. Coba gunakan Ctrl+V pada area paste.', 'warning');
+                }
             }
         });
 
@@ -1367,8 +1766,8 @@
                 return;
             }
 
-            if ((uploadMode === 'file' || uploadMode === 'photo') && !selectedFile) {
-                showNotification('Harap pilih file atau ambil foto!', 'error');
+            if ((uploadMode === 'file' || uploadMode === 'photo' || uploadMode === 'paste') && !selectedFile) {
+                showNotification('Harap pilih file, ambil foto, atau paste gambar!', 'error');
                 return;
             }
 
@@ -1513,6 +1912,49 @@
             document.getElementById('tanggal1').value = new Date().toISOString().split('T')[0];
             document.getElementById('tanggal1').focus();
         });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    // Create inline service worker
+                    const swCode = `
+                        const CACHE_NAME = 'entri-kip-app-v1';
+                        const urlsToCache = [
+                            '/',
+                            '/index.html'
+                        ];
+
+                        self.addEventListener('install', event => {
+                            event.waitUntil(
+                                caches.open(CACHE_NAME)
+                                    .then(cache => cache.addAll(urlsToCache))
+                            );
+                        });
+
+                        self.addEventListener('fetch', event => {
+                            event.respondWith(
+                                caches.match(event.request)
+                                    .then(response => {
+                                        if (response) {
+                                            return response;
+                                        }
+                                        return fetch(event.request);
+                                    })
+                            );
+                        });
+                    `;
+
+                    const blob = new Blob([swCode], { type: 'application/javascript' });
+                    const swUrl = URL.createObjectURL(blob);
+
+                    const registration = await navigator.serviceWorker.register(swUrl);
+                    console.log('ServiceWorker registration successful');
+                } catch (error) {
+                    console.log('ServiceWorker registration failed: ', error);
+                }
+            });
+        }
     </script>
 </body>
 
