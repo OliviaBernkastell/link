@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Kinerja Pegawai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a4635;
+            --primary-main: #2d6a4f;
+            --primary-light: #40916c;
+            --primary-lighter: #52b788;
+            --secondary: #74c69d;
+            --accent: #95d5b2;
+            --light: #b7e4c7;
+            --very-light: #d8f3dc;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-main) 25%, var(--primary-light) 75%, var(--secondary) 100%);
+            min-height: 100vh;
+            padding: 24px;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            padding: 48px 32px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.025em;
+        }
+
+        .main-content {
+            padding: 40px 32px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            border-radius: 2px;
+        }
+
+        .form-container {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--gray-700);
+            font-size: 0.95rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-main);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .input-field::placeholder {
+            color: var(--gray-400);
+        }
+
+        /* Styling untuk select dropdown */
+        select.input-field {
+            cursor: pointer;
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        select.input-field:focus {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%232d6a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"></polyline></svg>');
+        }
+
+        /* Searchable Dropdown Styles */
+        .searchable-dropdown {
+            position: relative;
+        }
+
+        .searchable-input {
+            width: 100%;
+            padding: 16px;
+            padding-right: 40px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+            font-family: inherit;
+            cursor: text;
+        }
+
+        .searchable-input:focus {
+            outline: none;
+            border-color: var(--primary-main);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .dropdown-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--gray-500);
+            transition: transform 0.2s ease;
+            opacity: 1;
+        }
+
+        .searchable-dropdown.open .dropdown-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        /* Loading indicator - new and improved */
+        .loading-indicator {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .loading-indicator.show {
+            opacity: 1;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gray-300);
+            border-radius: 50%;
+            border-top-color: var(--primary-main);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .dropdown-list {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-10px);
+            visibility: hidden;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dropdown-list.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--gray-50);
+        }
+
+        .dropdown-item.selected {
+            background-color: var(--primary-main);
+            color: var(--white);
+        }
+
+        .dropdown-item.highlighted {
+            background-color: var(--very-light);
+        }
+
+        .dropdown-empty {
+            padding: 16px;
+            text-align: center;
+            color: var(--gray-500);
+            font-style: italic;
+        }
+
+        /* Progress input styling khusus */
+        .progress-input {
+            position: relative;
+        }
+
+        .progress-input input[type="number"] {
+            padding-right: 50px;
+        }
+
+        .progress-suffix {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        /* Toggle Switch untuk periode tanggal */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            background: var(--gray-300);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary-main);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(28px);
+        }
+
+        .toggle-label {
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        /* Date inputs container */
+        .date-inputs {
+            display: grid;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .date-inputs.periode {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .date-inputs.single {
+            grid-template-columns: 1fr;
+        }
+
+        /* Upload mode tabs */
+        .upload-mode-tabs {
+            display: flex;
+            background: var(--gray-200);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 16px;
+        }
+
+        .upload-tab {
+            flex: 1;
+            padding: 12px 16px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: all 0.2s ease;
+        }
+
+        .upload-tab.active {
+            background: var(--white);
+            color: var(--primary-main);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-content {
+            display: none;
+        }
+
+        .upload-content.active {
+            display: block;
+        }
+
+        /* File upload area */
+        .file-upload-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            border: 2px dashed var(--gray-300);
+            border-radius: 8px;
+            background: var(--white);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--primary-main);
+            background: var(--very-light);
+        }
+
+        .file-upload-area.dragover {
+            border-color: var(--primary-main);
+            background: var(--very-light);
+            transform: scale(1.02);
+        }
+
+        .file-upload-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .file-upload-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 4px;
+        }
+
+        .file-upload-hint {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Photo capture area */
+        .photo-capture-area {
+            text-align: center;
+            padding: 32px;
+            border: 2px dashed var(--gray-300);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .capture-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 24px;
+            background: var(--primary-main);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .capture-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        /* File preview */
+        .file-preview {
+            margin-top: 16px;
+            padding: 16px;
+            background: var(--very-light);
+            border-radius: 8px;
+            border: 1px solid var(--light);
+            display: none;
+        }
+
+        .file-preview-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-preview-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 2px solid var(--white);
+        }
+
+        .file-preview-info {
+            flex: 1;
+        }
+
+        .file-preview-name {
+            font-weight: 500;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+        }
+
+        .file-preview-size {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin-top: 12px;
+            display: none;
+        }
+
+        .progress-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--gray-200);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-main), var(--primary-light));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Submit button */
+        .submit-button {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            margin-top: 24px;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(45, 106, 79, 0.3);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Data view section */
+        .data-view-section {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+
+        .data-view-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .data-view-description {
+            font-size: 1rem;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .data-view-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+        }
+
+        .data-view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 106, 79, 0.3);
+        }
+
+        .data-view-note {
+            margin-top: 16px;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: var(--white);
+            font-weight: 500;
+            z-index: 1000;
+            animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--error);
+        }
+
+        .notification.info {
+            background: var(--info);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Hidden input */
+        .hidden-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+
+            .container {
+                border-radius: 12px;
+            }
+
+            .header {
+                padding: 32px 24px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 24px 20px;
+            }
+
+            .form-container,
+            .data-view-section {
+                padding: 24px;
+            }
+
+            .section {
+                margin-bottom: 32px;
+            }
+
+            .notification {
+                right: 16px;
+                left: 16px;
+                max-width: none;
+            }
+
+            .date-inputs.periode {
+                grid-template-columns: 1fr;
+            }
+
+            .upload-tab {
+                font-size: 0.8rem;
+                padding: 10px 12px;
+            }
+
+            .dropdown-list {
+                max-height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>Aplikasi Kinerja Pegawai</h1>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <section class="section">
+                <h2 class="section-title">Input Kinerja Baru</h2>
+                <div class="form-container">
+                    <form id="activity-form">
+
+                        <!-- 1. MODE TANGGAL -->
+                        <div class="input-group">
+                            <label class="input-label">
+                                <svg class="icon" viewBox="0 0 24 24"
+                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+                                </svg>
+                                Mode Tanggal
+                            </label>
+                            <div class="toggle-container">
+                                <span class="toggle-label">Tanggal Tunggal</span>
+                                <div class="toggle-switch" id="date-toggle">
+                                    <div class="toggle-slider"></div>
+                                </div>
+                                <span class="toggle-label">Periode Tanggal</span>
+                            </div>
+
+                            <div class="date-inputs single" id="date-inputs">
+                                <div>
+                                    <label for="tanggal1" class="input-label">Tanggal</label>
+                                    <input type="date" id="tanggal1" name="tanggal1" class="input-field" required>
+                                </div>
+                                <div style="display: none;" id="tanggal2-container">
+                                    <label for="tanggal2" class="input-label">Tanggal Akhir</label>
+                                    <input type="date" id="tanggal2" name="tanggal2" class="input-field">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. RENCANA KINERJA - SEARCHABLE DROPDOWN -->
+                        <div class="input-group">
+                            <label for="rencana_kinerja_input" class="input-label">
+                                <svg class="icon" viewBox="0 0 24 24"
+                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17L7,12L8.41,10.59L12,14.18L15.59,10.59L17,12L12,17Z" />
+                                </svg>
+                                Rencana Kinerja
+                            </label>
+                            <div class="searchable-dropdown" id="rencana-dropdown">
+                                <input type="text" id="rencana_kinerja_input" name="rencana_kinerja"
+                                    class="searchable-input"
+                                    placeholder="Ketik untuk mencari atau pilih rencana kinerja..." autocomplete="off"
+                                    required>
+                                <!-- Normal dropdown icon -->
+                                <svg class="dropdown-icon icon" viewBox="0 0 24 24">
+                                    <polyline points="6,9 12,15 18,9"></polyline>
+                                </svg>
+                                <!-- Loading indicator -->
+                                <div class="loading-indicator" id="loading-indicator">
+                                    <div class="loading-spinner"></div>
+                                </div>
+                                <div class="dropdown-list" id="dropdown-list">
+                                    <div class="dropdown-empty">Loading...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. KEGIATAN -->
+                        <div class="input-group">
+                            <label for="kegiatan" class="input-label">
+                                <svg class="icon" viewBox="0 0 24 24"
+                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M14,6V4H10V6H9A1,1 0 0,0 8,7V19A1,1 0 0,0 9,20H15A1,1 0 0,0 16,19V7A1,1 0 0,0 15,6H14M12,9A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 12,12A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 12,9Z" />
+                                </svg>
+                                Kegiatan
+                            </label>
+                            <input type="text" id="kegiatan" name="kegiatan" class="input-field"
+                                placeholder="Masukkan nama kegiatan..." required>
+                        </div>
+
+                        <!-- 4. PROGRES -->
+                        <div class="input-group">
+                            <label for="progres" class="input-label">
+                                <svg class="icon" viewBox="0 0 24 24"
+                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19C8.47,19 5.57,16.39 5.08,13H2.05C2.55,18.05 6.82,22 12,22C13.45,22 14.83,21.68 16.07,21.12L14.54,18.5C13.75,18.82 12.9,19 12,19M2.05,11H5.08C5.57,7.61 8.47,5 12,5C12.9,5 13.75,5.18 14.54,5.5L16.07,2.88C14.83,2.32 13.45,2 12,2C6.82,2 2.55,6.05 2.05,11M15,12H12V7H10V14H15V12Z" />
+                                </svg>
+                                Progres
+                            </label>
+                            <div class="progress-input">
+                                <input type="number" id="progres" name="progres" class="input-field"
+                                    placeholder="Masukkan progres kegiatan (0-100)" min="0" max="100" required>
+                                <span class="progress-suffix">%</span>
+                            </div>
+                        </div>
+
+                        <!-- 5. CAPAIAN -->
+                        <div class="input-group">
+                            <label for="capaian" class="input-label">
+                                <svg class="icon" viewBox="0 0 24 24"
+                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M12,2A2,2 0 0,1 14,4V7.5A0.5,0.5 0 0,0 14.5,8H16A1,1 0 0,1 17,9V21A1,1 0 0,1 16,22H8A1,1 0 0,1 7,21V9A1,1 0 0,1 8,8H9.5A0.5,0.5 0 0,0 10,7.5V4A2,2 0 0,1 12,2M14,16V18H10V16H14M14,12V14H10V12H14Z" />
+                                </svg>
+                                Capaian
+                            </label>
+                            <textarea id="capaian" name="capaian" class="input-field"
+                                placeholder="Jelaskan capaian dari kegiatan ini..." rows="3" required></textarea>
+                        </div>
+
+                        <!-- 6. UPLOAD DOKUMEN/FOTO -->
+                        <div class="input-group">
+                            <label class="input-label">
+                                <svg class="icon" viewBox="0 0 24 24"
+                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path
+                                        d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                </svg>
+                                Dokumen/Foto Pendukung
+                            </label>
+
+                            <!-- Upload Mode Tabs -->
+                            <div class="upload-mode-tabs">
+                                <button type="button" class="upload-tab active" data-mode="link">
+                                    <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
+                                        <path
+                                            d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z" />
+                                    </svg>
+                                    Link
+                                </button>
+                                <button type="button" class="upload-tab" data-mode="file">
+                                    <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
+                                        <path
+                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                    </svg>
+                                    File
+                                </button>
+                                <button type="button" class="upload-tab" data-mode="photo">
+                                    <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
+                                        <path
+                                            d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
+                                    </svg>
+                                    Foto
+                                </button>
+                            </div>
+
+                            <!-- Link Input -->
+                            <div class="upload-content active" id="link-content">
+                                <input type="url" id="dokumen_link" name="dokumen_link" class="input-field"
+                                    placeholder="Masukkan link dokumen (Google Drive, Dropbox, dll)">
+                            </div>
+
+                            <!-- File Upload -->
+                            <div class="upload-content" id="file-content">
+                                <input type="file" id="file-upload" class="hidden-input" accept="*/*">
+                                <div class="file-upload-area" id="file-upload-area">
+                                    <div class="file-upload-icon">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path
+                                                d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                        </svg>
+                                    </div>
+                                    <div class="file-upload-text">Klik untuk upload atau drag & drop</div>
+                                    <div class="file-upload-hint">Semua jenis file diperbolehkan (max 10MB)</div>
+                                </div>
+                            </div>
+
+                            <!-- Photo Capture -->
+                            <div class="upload-content" id="photo-content">
+                                <input type="file" id="photo-capture" class="hidden-input" accept="image/*"
+                                    capture="environment">
+                                <div class="photo-capture-area">
+                                    <button type="button" class="capture-button" id="capture-btn">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path
+                                                d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
+                                        </svg>
+                                        Ambil Foto
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- File Preview -->
+                            <div class="file-preview" id="file-preview">
+                                <div class="file-preview-content">
+                                    <img id="preview-image" class="file-preview-image" alt="Preview"
+                                        style="display: none;">
+                                    <div class="file-preview-info">
+                                        <div class="file-preview-name" id="preview-name"></div>
+                                        <div class="file-preview-size" id="preview-size"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="progress-container" id="progress-container">
+                                <div class="progress-label" id="progress-label">Uploading...</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-button" id="submit-btn">
+                            <svg class="icon" viewBox="0 0 24 24" style="margin-right: 8px;">
+                                <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
+                            </svg>
+                            Simpan Data Kinerja
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Lihat Data Tersimpan</h2>
+                <div class="data-view-section">
+                    <div class="data-view-content">
+                        <p class="data-view-description">
+                            Semua data kinerja dan dokumen pendukung tersimpan otomatis di Google Sheets dan Google
+                            Drive.
+                            Klik tombol di bawah untuk melihat dan mengelola data.
+                        </p>
+
+                        <a href="https://docs.google.com/spreadsheets/d/1T6E09f6pCMygTUIhVF-Ng1jj1wiovhyC7zv1LIPSZu8/edit?gid=0#gid=0"
+                            target="_blank" class="data-view-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                            </svg>
+                            Buka Google Sheets
+                        </a>
+
+                        <p class="data-view-note">
+                            Data meliputi tanggal, rencana kinerja, kegiatan, progres, capaian, dan link dokumen
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // GANTI URL INI DENGAN URL GOOGLE APPS SCRIPT ANDA
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby1oWCFNPr1SoDGMBQh_0XRLx37hS0PJ83vIdLvMsaAM4sCjxRqEkVLMdWMxTBql8A03A/exec';
+
+        // DOM Elements
+        const form = document.getElementById('activity-form');
+        const dateToggle = document.getElementById('date-toggle');
+        const dateInputs = document.getElementById('date-inputs');
+        const tanggal2Container = document.getElementById('tanggal2-container');
+
+        // Searchable dropdown elements
+        const rencanaDropdown = document.getElementById('rencana-dropdown');
+        const rencanaInput = document.getElementById('rencana_kinerja_input');
+        const dropdownList = document.getElementById('dropdown-list');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        // Upload elements
+        const uploadTabs = document.querySelectorAll('.upload-tab');
+        const uploadContents = document.querySelectorAll('.upload-content');
+        const fileUploadArea = document.getElementById('file-upload-area');
+        const fileUpload = document.getElementById('file-upload');
+        const photoCapture = document.getElementById('photo-capture');
+        const captureBtn = document.getElementById('capture-btn');
+        const filePreview = document.getElementById('file-preview');
+        const previewImage = document.getElementById('preview-image');
+        const previewName = document.getElementById('preview-name');
+        const previewSize = document.getElementById('preview-size');
+        const progressContainer = document.getElementById('progress-container');
+        const progressFill = document.getElementById('progress-fill');
+        const progressLabel = document.getElementById('progress-label');
+        const submitBtn = document.getElementById('submit-btn');
+
+        let selectedFile = null;
+        let uploadMode = 'link';
+        let isPeriodMode = false;
+        let rencanaKinerjaOptions = [];
+        let filteredOptions = [];
+        let selectedIndex = -1;
+
+        // Searchable Dropdown Functionality
+        class SearchableDropdown {
+            constructor(container, input, list, loadingIndicator) {
+                this.container = container;
+                this.input = input;
+                this.list = list;
+                this.loadingIndicator = loadingIndicator;
+                this.options = [];
+                this.filteredOptions = [];
+                this.selectedIndex = -1;
+                this.isOpen = false;
+
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Input events
+                this.input.addEventListener('input', (e) => this.handleInput(e));
+                this.input.addEventListener('focus', () => this.openDropdown());
+                this.input.addEventListener('keydown', (e) => this.handleKeydown(e));
+
+                // Click outside to close
+                document.addEventListener('click', (e) => {
+                    if (!this.container.contains(e.target)) {
+                        this.closeDropdown();
+                    }
+                });
+
+                // List events
+                this.list.addEventListener('click', (e) => this.handleListClick(e));
+            }
+
+            setOptions(options) {
+                this.options = options;
+                this.filteredOptions = [...options];
+                this.renderOptions();
+            }
+
+            handleInput(e) {
+                const query = e.target.value.toLowerCase();
+                this.filteredOptions = this.options.filter(option =>
+                    option.toLowerCase().includes(query)
+                );
+                this.selectedIndex = -1;
+                this.renderOptions();
+                this.openDropdown();
+            }
+
+            handleKeydown(e) {
+                if (!this.isOpen && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+                    this.openDropdown();
+                    return;
+                }
+
+                switch (e.key) {
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        this.selectedIndex = Math.min(this.selectedIndex + 1, this.filteredOptions.length - 1);
+                        this.highlightOption();
+                        break;
+
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        this.selectedIndex = Math.max(this.selectedIndex - 1, -1);
+                        this.highlightOption();
+                        break;
+
+                    case 'Enter':
+                        e.preventDefault();
+                        if (this.selectedIndex >= 0 && this.filteredOptions[this.selectedIndex]) {
+                            this.selectOption(this.filteredOptions[this.selectedIndex]);
+                        }
+                        break;
+
+                    case 'Escape':
+                        this.closeDropdown();
+                        break;
+                }
+            }
+
+            handleListClick(e) {
+                const item = e.target.closest('.dropdown-item');
+                if (item) {
+                    const option = item.textContent;
+                    this.selectOption(option);
+                }
+            }
+
+            selectOption(option) {
+                this.input.value = option;
+                this.closeDropdown();
+
+                // Trigger validation
+                this.input.dispatchEvent(new Event('input', { bubbles: true }));
+                this.input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+
+            openDropdown() {
+                this.isOpen = true;
+                this.container.classList.add('open');
+                this.list.classList.add('show');
+                this.renderOptions();
+            }
+
+            closeDropdown() {
+                this.isOpen = false;
+                this.container.classList.remove('open');
+                this.list.classList.remove('show');
+                this.selectedIndex = -1;
+            }
+
+            highlightOption() {
+                const items = this.list.querySelectorAll('.dropdown-item');
+                items.forEach((item, index) => {
+                    item.classList.toggle('highlighted', index === this.selectedIndex);
+                });
+
+                // Scroll to highlighted item
+                if (this.selectedIndex >= 0 && items[this.selectedIndex]) {
+                    items[this.selectedIndex].scrollIntoView({
+                        block: 'nearest'
+                    });
+                }
+            }
+
+            renderOptions() {
+                if (this.filteredOptions.length === 0) {
+                    this.list.innerHTML = '<div class="dropdown-empty">Tidak ada hasil ditemukan</div>';
+                    return;
+                }
+
+                this.list.innerHTML = this.filteredOptions
+                    .map(option => `<div class="dropdown-item">${option}</div>`)
+                    .join('');
+            }
+
+            setLoading(isLoading) {
+                if (isLoading) {
+                    this.input.placeholder = 'Loading rencana kinerja...';
+                    this.input.disabled = true;
+                    this.list.innerHTML = '<div class="dropdown-empty">Loading...</div>';
+                    // Show loading indicator, hide dropdown icon
+                    this.loadingIndicator.classList.add('show');
+                    this.container.querySelector('.dropdown-icon').style.opacity = '0';
+                } else {
+                    this.input.placeholder = 'Ketik untuk mencari atau pilih rencana kinerja...';
+                    this.input.disabled = false;
+                    // Hide loading indicator, show dropdown icon
+                    this.loadingIndicator.classList.remove('show');
+                    this.container.querySelector('.dropdown-icon').style.opacity = '1';
+                }
+            }
+        }
+
+        // Initialize searchable dropdown
+        const dropdown = new SearchableDropdown(rencanaDropdown, rencanaInput, dropdownList, loadingIndicator);
+
+        // Load rencana kinerja from Sheet2
+        async function loadRencanaKinerja() {
+            try {
+                console.log('Loading rencana kinerja from Sheet2...');
+                dropdown.setLoading(true);
+
+                const response = await fetch(`${scriptURL}?action=getCategories`);
+                const result = await response.json();
+
+                console.log('Rencana kinerja response:', result);
+
+                if (result.result === 'success' && result.data && result.data.length > 0) {
+                    rencanaKinerjaOptions = result.data;
+                    dropdown.setOptions(rencanaKinerjaOptions);
+                    showNotification('Rencana kinerja berhasil dimuat!', 'success');
+                } else {
+                    rencanaKinerjaOptions = [];
+                    dropdown.setOptions([]);
+                    showNotification('Tidak ada rencana kinerja. Silakan periksa Sheet2.', 'warning');
+                }
+            } catch (error) {
+                console.error('Error loading rencana kinerja:', error);
+                rencanaKinerjaOptions = [];
+                dropdown.setOptions([]);
+                showNotification('Gagal memuat rencana kinerja. Periksa koneksi internet.', 'error');
+            } finally {
+                dropdown.setLoading(false);
+            }
+        }
+
+        // Date toggle functionality
+        dateToggle.addEventListener('click', () => {
+            isPeriodMode = !isPeriodMode;
+            dateToggle.classList.toggle('active', isPeriodMode);
+
+            if (isPeriodMode) {
+                dateInputs.className = 'date-inputs periode';
+                tanggal2Container.style.display = 'block';
+                document.getElementById('tanggal2').required = true;
+            } else {
+                dateInputs.className = 'date-inputs single';
+                tanggal2Container.style.display = 'none';
+                document.getElementById('tanggal2').required = false;
+                document.getElementById('tanggal2').value = '';
+            }
+        });
+
+        // Upload mode tabs
+        uploadTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                uploadMode = tab.dataset.mode;
+
+                // Update active tab
+                uploadTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Update content
+                uploadContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(`${uploadMode}-content`).classList.add('active');
+
+                // Reset file selection
+                selectedFile = null;
+                filePreview.style.display = 'none';
+                fileUpload.value = '';
+                photoCapture.value = '';
+            });
+        });
+
+        // File upload handlers
+        fileUploadArea.addEventListener('click', () => {
+            fileUpload.click();
+        });
+
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelection(files[0]);
+            }
+        });
+
+        fileUpload.addEventListener('change', (e) => {
+            if (e.target.files[0]) {
+                handleFileSelection(e.target.files[0]);
+            }
+        });
+
+        // Photo capture
+        captureBtn.addEventListener('click', () => {
+            photoCapture.click();
+        });
+
+        photoCapture.addEventListener('change', (e) => {
+            if (e.target.files[0]) {
+                handleFileSelection(e.target.files[0]);
+            }
+        });
+
+        function handleFileSelection(file) {
+            // Validate file size (max 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                showNotification('Ukuran file terlalu besar! Maksimal 10MB', 'error');
+                return;
+            }
+
+            selectedFile = file;
+
+            // Show file preview
+            const fileSize = (file.size / 1024 / 1024).toFixed(2);
+            previewName.textContent = file.name;
+            previewSize.textContent = `${fileSize} MB • ${file.type}`;
+
+            // Show image preview if it's an image
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.style.display = 'none';
+            }
+
+            filePreview.style.display = 'block';
+        }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const tanggal1 = document.getElementById('tanggal1').value;
+            const tanggal2 = document.getElementById('tanggal2').value;
+            const rencanaKinerja = rencanaInput.value.trim();
+            const kegiatan = document.getElementById('kegiatan').value.trim();
+            const progres = document.getElementById('progres').value;
+            const capaian = document.getElementById('capaian').value.trim();
+            const dokumenLink = document.getElementById('dokumen_link').value.trim();
+
+            // Validation
+            if (!tanggal1 || !rencanaKinerja || !kegiatan || !progres || !capaian) {
+                showNotification('Harap isi semua field yang wajib!', 'error');
+                return;
+            }
+
+            // Validasi progres 0-100
+            if (progres < 0 || progres > 100) {
+                showNotification('Progres harus antara 0-100!', 'error');
+                return;
+            }
+
+            if (isPeriodMode && !tanggal2) {
+                showNotification('Harap isi tanggal akhir untuk mode periode!', 'error');
+                return;
+            }
+
+            if (uploadMode === 'link' && !dokumenLink) {
+                showNotification('Harap masukkan link dokumen!', 'error');
+                return;
+            }
+
+            if ((uploadMode === 'file' || uploadMode === 'photo') && !selectedFile) {
+                showNotification('Harap pilih file atau ambil foto!', 'error');
+                return;
+            }
+
+            // Disable form
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <div style="display: inline-block; width: 20px; height: 20px; border: 2px solid #ffffff; border-radius: 50%; border-top-color: transparent; animation: spin 1s linear infinite; margin-right: 8px;"></div>
+                Memproses...
+            `;
+            progressContainer.style.display = 'block';
+
+            try {
+                updateProgress(25, 'Mempersiapkan data...');
+
+                // Prepare form data
+                const formData = new FormData();
+                formData.append('action', 'submit');
+                formData.append('tanggal1', tanggal1);
+                if (isPeriodMode && tanggal2) {
+                    formData.append('tanggal2', tanggal2);
+                }
+                formData.append('isPeriodMode', isPeriodMode);
+                formData.append('rencanaKinerja', rencanaKinerja);
+                formData.append('kegiatan', kegiatan);
+                formData.append('progres', progres);
+                formData.append('capaian', capaian);
+                formData.append('uploadMode', uploadMode);
+
+                if (uploadMode === 'link') {
+                    formData.append('dokumenLink', dokumenLink);
+                    updateProgress(75, 'Menyimpan data...');
+                } else if (selectedFile) {
+                    updateProgress(50, 'Mengkonversi file...');
+                    const base64 = await fileToBase64(selectedFile);
+                    formData.append('fileName', selectedFile.name);
+                    formData.append('fileData', base64);
+                    formData.append('fileType', selectedFile.type);
+                    updateProgress(75, 'Mengupload file...');
+                }
+
+                // Send to Google Apps Script
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                updateProgress(90, 'Menyimpan ke database...');
+                const result = await response.json();
+                updateProgress(100, 'Selesai!');
+
+                if (result.result === 'success') {
+                    showNotification('Data kinerja berhasil disimpan!', 'success');
+                    resetForm();
+                } else {
+                    throw new Error(result.error || 'Gagal menyimpan data');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Gagal menyimpan: ' + error.message, 'error');
+            } finally {
+                // Reset button and progress
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <svg class="icon" viewBox="0 0 24 24" style="margin-right: 8px;">
+                        <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"/>
+                    </svg>
+                    Simpan Data Kinerja
+                `;
+
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    updateProgress(0, 'Uploading...');
+                }, 1500);
+            }
+        });
+
+        function resetForm() {
+            form.reset();
+            selectedFile = null;
+            filePreview.style.display = 'none';
+
+            // Reset dropdown
+            rencanaInput.value = '';
+            dropdown.closeDropdown();
+
+            // Reset date mode
+            isPeriodMode = false;
+            dateToggle.classList.remove('active');
+            dateInputs.className = 'date-inputs single';
+            tanggal2Container.style.display = 'none';
+            document.getElementById('tanggal2').required = false;
+
+            // Reset upload mode
+            uploadMode = 'link';
+            uploadTabs.forEach(t => t.classList.remove('active'));
+            uploadTabs[0].classList.add('active');
+            uploadContents.forEach(content => content.classList.remove('active'));
+            document.getElementById('link-content').classList.add('active');
+
+            document.getElementById('tanggal1').focus();
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        function updateProgress(percent, label = 'Processing...') {
+            progressFill.style.width = percent + '%';
+            progressLabel.textContent = label;
+        }
+
+        function showNotification(message, type) {
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, type === 'info' ? 3000 : 5000);
+        }
+
+        // Load rencana kinerja when page loads
+        window.addEventListener('load', () => {
+            loadRencanaKinerja();
+            // Set today's date as default
+            document.getElementById('tanggal1').value = new Date().toISOString().split('T')[0];
+            document.getElementById('tanggal1').focus();
+        });
+    </script>
+</body>
+
+</html>
