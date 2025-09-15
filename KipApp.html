@@ -14,17 +14,26 @@
     <meta name="apple-mobile-web-app-title" content="Entri KiP App">
     <meta name="description" content="Aplikasi untuk melacak dan mengelola kinerja pegawai dengan mudah">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzJkNmE0ZiIvPgo8cGF0aCBkPSJNOSAxMEgxN1YxMkg5VjEwWiIgZmlsbD0id2hpdGUiLz4KPHA+YXRoIGQ9Ik05IDE0SDE5VjE2SDlWMTRaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOSAxOEgxNVYyMEg5VjE4WiIgZmlsbD0id2hpdGUiLz4KPHA+YXRoIGQ9Ik05IDIySDE5VjI0SDlWMjJaIiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSIyMiIgY3k9IjEyIiByPSIzIiBmaWxsPSIjNTJiNzg4Ii8+CjxjaXJjbGUgY3g9IjIyIiBjeT0iMjAiIHI9IjMiIGZpbGw9IiM1MmI3ODgiLz4KPC9zdmc+">
+    <!-- Favicon dan Icons menggunakan icon.png -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icon.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="icon.png">
 
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiMyZDZhNGYiLz4KPHA+YXRoIGQ9Ik01MCA1NUg5NVY2N0g1MFY1NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01MCA3OEgxMDVWOTBINTBWNzhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTAgMTAxSDg1VjExM0g1MFYxMDFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNTAgMTI0SDEwNVYxMzZINTBWMTI0WiIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTIzIiBjeT0iNjciIHI9IjE3IiBmaWxsPSIjNTJiNzg4Ii8+CjxjaXJjbGUgY3g9IjEyMyIgY3k9IjExMyIgcj0iMTciIGZpbGw9IiM1MmI3ODgiLz4KPC9zdmc+">
+    <!-- Inline Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkVudHJpIEtpUCBBcHAiLAogICJzaG9ydF9uYW1lIjogIkVudHJpIEtpUCIsCiAgImRlc2NyaXB0aW9uIjogIkFwbGlrYXNpIHVudHVrIG1lbGFjYWsgZGFuIG1lbmdlbG9sYSBraW5lcmphIHBlZ2F3YWkgZGVuZ2FuIG11ZGFoIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyZDZhNGYiLAogICJ0aGVtZV9jb2xvciI6ICIjMmQ2YTRmIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQtcHJpbWFyeSIsCiAgInNjb3BlIjogIi8iLAogICJsYW5nIjogImlkIiwKICAiZGlyIjogImx0ciIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjcyeDcyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJpY29uLnBuZyIsIAogICAgICAic2l6ZXMiOiAiOTZ4OTYiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjEyOHgxMjgiLCAKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJpY29uLnBuZyIsCiAgICAgICJzaXplcyI6ICIxNDR4MTQ0IiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwgCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaWNvbi5wbmciLAogICAgICAic2l6ZXMiOiAiMTUyeDE1MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaWNvbi5wbmciLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaWNvbi5wbmciLCAKICAgICAgInNpemVzIjogIjM4NHgzODQiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXSwKICAiY2F0ZWdvcmllcyI6IFsicHJvZHVjdGl2aXR5IiwgImJ1c2luZXNzIl0KfQ==">
 
-    <!-- Manifest -->
-    <link rel="manifest"
-        href="data:application/json;base64,ewogICJuYW1lIjogIkVudHJpIEtpUCBBcHAiLAogICJzaG9ydF9uYW1lIjogIkVudHJpIEtpUCIsCiAgImRlc2NyaXB0aW9uIjogIkFwbGlrYXNpIHVudHVrIG1lbGFjYWsgZGFuIG1lbmdlbG9sYSBraW5lcmphIHBlZ2F3YWkgZGVuZ2FuIG11ZGFoIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyZDZhNGYiLAogICJ0aGVtZV9jb2xvciI6ICIjMmQ2YTRmIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lnZG1sbGQwSnZlRDBpTUNBd0lERTRNQ0F4T0RBaUlHWnBiR3c5SW01dmJtVWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStDanh5WldOMElIZHBaSFJvUFNJeE9EQWlJR2hsYVdkb2REMGlNVGd3SWlCeWVEMGlOREFpSUdacGJHdzlJaU15WkRaaE5HWWlMejRLUEhCaGRHZ2daRDBpVFRVd0lEVTFTRGsxVmpZM1NEVXdWalUxV2lJZ1ptbHNiRDBpZDJocGRHVWlMejRLUEhCaGRHZ2daRDBpVFRVd0lEYzRTREV3TlVZNU1FZzFNRlkzT0ZvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p4d1lYUm9JR1E5SWswMU1DQXhNREZJT0RVMU1URkVRek5JTlRCV01URkJXaUlnWm1sc2JEMGlkMmhwZEdVaUx6NEtQSEJoZEdnZ1pEMGlUVFV3SUFFMU1VZ3hNRFY2VkVFeU5FZzFNRlk1TjBoYUlpQm1hV3hzUFNKM2FHbDBaU0l2UGdvOFkybHlZMnhsSUdONFBTSXhNak1pSUdONVBTSTJOeUlnY2owaU1UY2lJR1pwYkd3OUlpTTFNbUkzT0RnaUx6NEtQR05wY21Oc1pTQmplRDBpTVRJeklpQmplVDBpTVRFeklpQnlQU0l4TnlJZ1ptbHNiRDBpSXpVeVlqYzRPQ0l2UGdvOEwyOTJaejQ9IiwKICAgICAgInNpemVzIjogIjE4MHgxODAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdkbWxsZDBKdmVEMGlNQ0F3SUFFNU1DQTFPVEFpSUdacGJHdzlJbTV2Ym1VaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK0NqeHlaV04wSUhkcFpIUm9QU0kxTVRJaUlHaGxhV2RvZEQwaU5URXlJaUJ5ZUQwaU1URXlJaUJtYVd4c1BTSWpNbVEyWVRSbUlpOCtDanhvWVhSb0lHUTlJazB4TkRRZ01USTFTRGN6TkZZeU1qUklNVFEwVmpFNU5Vb2lJR1pwYkd3OUluZG9hWFJsSWk4K0NqeHdZWFJvSUdROUlrMHhORFFnTWprNFNESTVOMVl6T0RoSU1UUTBWakl6TjFvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p4d1lYUmlJR1E5SWsweE5EUWdNemN5U0RJeE5XWTJOVUkxU0RFME5GWXpORk5hSWlCbWFXeHNQU0ozYUdsMFpTSXZQZ284Y0dGMGFDQmtQU0pOTVRRMElEUXpSaE16TnpZOVNEWXpNa1kyTkRGSU1UUTBWalF6UTFvaUlHWnBiR3c5SW5kb2FYUmxJaTgrQ2p4amFYSmpiR1VnWTNnOUlqTWtNU0lnWTNrOUlqWXlOaUlnY2owaU5Ua2lJR1pwYkd3OUlpTTJOall6WTJJaUx6NEtQR05wY21Oc1pTQmplRDBpTXpBeElpQmplVDBpTmpJMklpQnlQU0kxT1NJZ1ptbHNiRDBpSXpZM05qTmpZaUl2UGdvOEwyOTJaejQ9IiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#2d6a4f">
+    <meta name="msapplication-TileImage" content="icon.png">
+    <meta name="msapplication-config" content="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGJyb3dzZXJjb25maWc+CiAgICA8bXNhcHBsaWNhdGlvbj4KICAgICAgICA8dGlsZT4KICAgICAgICAgICAgPHNxdWFyZTcweDcwbG9nbyBzcmM9Imljb24ucG5nIi8+CiAgICAgICAgICAgIDxzcXVhcmUxNTB4MTUwbG9nbyBzcmM9Imljb24ucG5nIi8+CiAgICAgICAgICAgIDxzcXVhcmUzMTB4MzEwbG9nbyBzcmM9Imljb24ucG5nIi8+CiAgICAgICAgICAgIDx3aWRlMzEweDE1MGxvZ28gc3JjPSJpY29uLnBuZyIvPgogICAgICAgICAgICA8VGlsZUNvbG9yPiMyZDZhNGY8L1RpbGVDb2xvcj4KICAgICAgICA8L3RpbGU+CiAgICA8L21zYXBwbGljYXRpb24+CjwvYnJvd3NlcmNvbmZpZz4=">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -116,12 +125,13 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
         }
 
-        .logo-icon {
+        .app-logo img {
             width: 40px;
             height: 40px;
-            fill: var(--primary-main);
+            object-fit: contain;
         }
 
         .header h1 {
@@ -339,7 +349,6 @@
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
@@ -840,7 +849,6 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
-
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -953,8 +961,7 @@
             Install Entri KiP App
             <button class="close-btn" id="pwa-close-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
                 </svg>
             </button>
         </button>
@@ -964,12 +971,7 @@
         <div class="header">
             <div class="header-content">
                 <div class="app-logo">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M14,6V4H10V6H9A1,1 0 0,0 8,7V19A1,1 0 0,0 9,20H15A1,1 0 0,0 16,19V7A1,1 0 0,0 15,6H14M12,9A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 12,12A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 12,9Z" />
-                        <circle cx="18" cy="9" r="3" fill="#52b788" />
-                        <circle cx="18" cy="15" r="3" fill="#52b788" />
-                    </svg>
+                    <img src="icon.png" alt="Entri KiP App Logo">
                 </div>
                 <div>
                     <h1>Entri KiP App</h1>
@@ -986,10 +988,8 @@
                         <!-- 1. MODE TANGGAL -->
                         <div class="input-group">
                             <label class="input-label">
-                                <svg class="icon" viewBox="0 0 24 24"
-                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                    <path
-                                        d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path d="M19,3H18V1H16V3H8V1H6V3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
                                 </svg>
                                 Mode Tanggal
                             </label>
@@ -1016,18 +1016,14 @@
                         <!-- 2. RENCANA KINERJA - SEARCHABLE DROPDOWN -->
                         <div class="input-group">
                             <label for="rencana_kinerja_input" class="input-label">
-                                <svg class="icon" viewBox="0 0 24 24"
-                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                    <path
-                                        d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17L7,12L8.41,10.59L12,14.18L15.59,10.59L17,12L12,17Z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17L7,12L8.41,10.59L12,14.18L15.59,10.59L17,12L12,17Z" />
                                 </svg>
                                 Rencana Kinerja
                             </label>
                             <div class="searchable-dropdown" id="rencana-dropdown">
-                                <input type="text" id="rencana_kinerja_input" name="rencana_kinerja"
-                                    class="searchable-input"
-                                    placeholder="Ketik untuk mencari atau pilih rencana kinerja..." autocomplete="off"
-                                    required>
+                                <input type="text" id="rencana_kinerja_input" name="rencana_kinerja" class="searchable-input"
+                                    placeholder="Ketik untuk mencari atau pilih rencana kinerja..." autocomplete="off" required>
                                 <!-- Normal dropdown icon -->
                                 <svg class="dropdown-icon icon" viewBox="0 0 24 24">
                                     <polyline points="6,9 12,15 18,9"></polyline>
@@ -1045,10 +1041,8 @@
                         <!-- 3. KEGIATAN -->
                         <div class="input-group">
                             <label for="kegiatan" class="input-label">
-                                <svg class="icon" viewBox="0 0 24 24"
-                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                    <path
-                                        d="M14,6V4H10V6H9A1,1 0 0,0 8,7V19A1,1 0 0,0 9,20H15A1,1 0 0,0 16,19V7A1,1 0 0,0 15,6H14M12,9A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 12,12A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 12,9Z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path d="M14,6V4H10V6H9A1,1 0 0,0 8,7V19A1,1 0 0,0 9,20H15A1,1 0 0,0 16,19V7A1,1 0 0,0 15,6H14M12,9A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 12,12A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 12,9Z" />
                                 </svg>
                                 Kegiatan
                             </label>
@@ -1059,10 +1053,8 @@
                         <!-- 4. PROGRES -->
                         <div class="input-group">
                             <label for="progres" class="input-label">
-                                <svg class="icon" viewBox="0 0 24 24"
-                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                    <path
-                                        d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19C8.47,19 5.57,16.39 5.08,13H2.05C2.55,18.05 6.82,22 12,22C13.45,22 14.83,21.68 16.07,21.12L14.54,18.5C13.75,18.82 12.9,19 12,19M2.05,11H5.08C5.57,7.61 8.47,5 12,5C12.9,5 13.75,5.18 14.54,5.5L16.07,2.88C14.83,2.32 13.45,2 12,2C6.82,2 2.55,6.05 2.05,11M15,12H12V7H10V14H15V12Z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19C8.47,19 5.57,16.39 5.08,13H2.05C2.55,18.05 6.82,22 12,22C13.45,22 14.83,21.68 16.07,21.12L14.54,18.5C13.75,18.82 12.9,19 12,19M2.05,11H5.08C5.57,7.61 8.47,5 12,5C12.9,5 13.75,5.18 14.54,5.5L16.07,2.88C14.83,2.32 13.45,2 12,2C6.82,2 2.55,6.05 2.05,11M15,12H12V7H10V14H15V12Z" />
                                 </svg>
                                 Progres
                             </label>
@@ -1076,10 +1068,8 @@
                         <!-- 5. CAPAIAN -->
                         <div class="input-group">
                             <label for="capaian" class="input-label">
-                                <svg class="icon" viewBox="0 0 24 24"
-                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                    <path
-                                        d="M12,2A2,2 0 0,1 14,4V7.5A0.5,0.5 0 0,0 14.5,8H16A1,1 0 0,1 17,9V21A1,1 0 0,1 16,22H8A1,1 0 0,1 7,21V9A1,1 0 0,1 8,8H9.5A0.5,0.5 0 0,0 10,7.5V4A2,2 0 0,1 12,2M14,16V18H10V16H14M14,12V14H10V12H14Z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path d="M12,2A2,2 0 0,1 14,4V7.5A0.5,0.5 0 0,0 14.5,8H16A1,1 0 0,1 17,9V21A1,1 0 0,1 16,22H8A1,1 0 0,1 7,21V9A1,1 0 0,1 8,8H9.5A0.5,0.5 0 0,0 10,7.5V4A2,2 0 0,1 12,2M14,16V18H10V16H14M14,12V14H10V12H14Z" />
                                 </svg>
                                 Capaian
                             </label>
@@ -1090,10 +1080,8 @@
                         <!-- 6. UPLOAD DOKUMEN/FOTO -->
                         <div class="input-group">
                             <label class="input-label">
-                                <svg class="icon" viewBox="0 0 24 24"
-                                    style="display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                    <path
-                                        d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                                 </svg>
                                 Dokumen/Foto Pendukung
                             </label>
@@ -1102,29 +1090,25 @@
                             <div class="upload-mode-tabs">
                                 <button type="button" class="upload-tab active" data-mode="link">
                                     <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
-                                        <path
-                                            d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z" />
+                                        <path d="M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7A5,5 0 0,0 2,12A5,5 0 0,0 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17A5,5 0 0,0 22,12A5,5 0 0,0 17,7Z" />
                                     </svg>
                                     Link
                                 </button>
                                 <button type="button" class="upload-tab" data-mode="file">
                                     <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
-                                        <path
-                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                                     </svg>
                                     File
                                 </button>
                                 <button type="button" class="upload-tab" data-mode="paste">
                                     <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
-                                        <path
-                                            d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
+                                        <path d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
                                     </svg>
                                     Paste
                                 </button>
                                 <button type="button" class="upload-tab" data-mode="photo">
                                     <svg class="icon" viewBox="0 0 24 24" style="margin-right: 4px;">
-                                        <path
-                                            d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
+                                        <path d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
                                     </svg>
                                     Foto
                                 </button>
@@ -1142,8 +1126,7 @@
                                 <div class="file-upload-area" id="file-upload-area">
                                     <div class="file-upload-icon">
                                         <svg class="icon" viewBox="0 0 24 24">
-                                            <path
-                                                d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                                         </svg>
                                     </div>
                                     <div class="file-upload-text">Klik untuk upload atau drag & drop</div>
@@ -1156,8 +1139,7 @@
                                 <div class="paste-area" id="paste-area" tabindex="0">
                                     <div class="paste-icon">
                                         <svg class="icon" viewBox="0 0 24 24">
-                                            <path
-                                                d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
+                                            <path d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
                                         </svg>
                                     </div>
                                     <div class="paste-text">Klik area ini lalu paste gambar</div>
@@ -1168,13 +1150,11 @@
 
                             <!-- Photo Capture -->
                             <div class="upload-content" id="photo-content">
-                                <input type="file" id="photo-capture" class="hidden-input" accept="image/*"
-                                    capture="environment">
+                                <input type="file" id="photo-capture" class="hidden-input" accept="image/*" capture="environment">
                                 <div class="photo-capture-area">
                                     <button type="button" class="capture-button" id="capture-btn">
                                         <svg class="icon" viewBox="0 0 24 24">
-                                            <path
-                                                d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
+                                            <path d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" />
                                         </svg>
                                         Ambil Foto
                                     </button>
@@ -1184,8 +1164,7 @@
                             <!-- File Preview -->
                             <div class="file-preview" id="file-preview">
                                 <div class="file-preview-content">
-                                    <img id="preview-image" class="file-preview-image" alt="Preview"
-                                        style="display: none;">
+                                    <img id="preview-image" class="file-preview-image" alt="Preview" style="display: none;">
                                     <div class="file-preview-info">
                                         <div class="file-preview-name" id="preview-name"></div>
                                         <div class="file-preview-size" id="preview-size"></div>
@@ -1217,16 +1196,14 @@
                 <div class="data-view-section">
                     <div class="data-view-content">
                         <p class="data-view-description">
-                            Semua data kinerja dan dokumen pendukung tersimpan otomatis di Google Sheets dan Google
-                            Drive.
+                            Semua data kinerja dan dokumen pendukung tersimpan otomatis di Google Sheets dan Google Drive.
                             Klik tombol di bawah untuk melihat dan mengelola data.
                         </p>
 
                         <a href="https://docs.google.com/spreadsheets/d/1T6E09f6pCMygTUIhVF-Ng1jj1wiovhyC7zv1LIPSZu8/edit?gid=0#gid=0"
                             target="_blank" class="data-view-button">
                             <svg class="icon" viewBox="0 0 24 24">
-                                <path
-                                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                             </svg>
                             Buka Google Sheets
                         </a>
@@ -1624,33 +1601,33 @@
 
         pasteArea.addEventListener('paste', async (e) => {
             e.preventDefault();
-
+            
             try {
                 let clipboardData = e.clipboardData || window.clipboardData;
                 let items = clipboardData.items;
 
                 for (let i = 0; i < items.length; i++) {
                     let item = items[i];
-
+                    
                     if (item.type.indexOf('image') !== -1) {
                         let blob = item.getAsFile();
-
+                        
                         if (blob) {
                             // Create a file from the blob with a timestamp name
                             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
                             const file = new File([blob], `pasted-image-${timestamp}.png`, {
                                 type: 'image/png'
                             });
-
+                            
                             handleFileSelection(file);
                             showNotification('Gambar berhasil di-paste!', 'success');
                             return;
                         }
                     }
                 }
-
+                
                 showNotification('Tidak ada gambar yang ditemukan di clipboard. Pastikan Anda telah menyalin gambar terlebih dahulu.', 'warning');
-
+                
             } catch (error) {
                 console.error('Error pasting:', error);
                 showNotification('Gagal memproses gambar dari clipboard.', 'error');
@@ -1661,11 +1638,11 @@
         pasteArea.addEventListener('keydown', async (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
                 e.preventDefault();
-
+                
                 try {
                     if (navigator.clipboard && navigator.clipboard.read) {
                         const clipboardItems = await navigator.clipboard.read();
-
+                        
                         for (const clipboardItem of clipboardItems) {
                             for (const type of clipboardItem.types) {
                                 if (type.startsWith('image/')) {
@@ -1674,14 +1651,14 @@
                                     const file = new File([blob], `pasted-image-${timestamp}.png`, {
                                         type: blob.type
                                     });
-
+                                    
                                     handleFileSelection(file);
                                     showNotification('Gambar berhasil di-paste!', 'success');
                                     return;
                                 }
                             }
                         }
-
+                        
                         showNotification('Tidak ada gambar yang ditemukan di clipboard.', 'warning');
                     }
                 } catch (error) {
@@ -1913,33 +1890,84 @@
             document.getElementById('tanggal1').focus();
         });
 
-        // Register Service Worker for PWA
+        // Enhanced Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
                 try {
-                    // Create inline service worker
+                    // Create comprehensive service worker
                     const swCode = `
-                        const CACHE_NAME = 'entri-kip-app-v1';
+                        const CACHE_NAME = 'entri-kip-app-v3';
                         const urlsToCache = [
                             '/',
-                            '/index.html'
+                            '/KipApp.html',
+                            '/icon.png',
+                            'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
                         ];
 
                         self.addEventListener('install', event => {
+                            console.log('Service Worker installing...');
                             event.waitUntil(
                                 caches.open(CACHE_NAME)
-                                    .then(cache => cache.addAll(urlsToCache))
+                                    .then(cache => {
+                                        console.log('Caching files...');
+                                        return cache.addAll(urlsToCache);
+                                    })
+                                    .catch(error => {
+                                        console.error('Cache failed:', error);
+                                    })
                             );
+                            self.skipWaiting();
+                        });
+
+                        self.addEventListener('activate', event => {
+                            console.log('Service Worker activating...');
+                            event.waitUntil(
+                                caches.keys().then(cacheNames => {
+                                    return Promise.all(
+                                        cacheNames.map(cacheName => {
+                                            if (cacheName !== CACHE_NAME) {
+                                                console.log('Deleting old cache:', cacheName);
+                                                return caches.delete(cacheName);
+                                            }
+                                        })
+                                    );
+                                })
+                            );
+                            self.clients.claim();
                         });
 
                         self.addEventListener('fetch', event => {
                             event.respondWith(
                                 caches.match(event.request)
                                     .then(response => {
+                                        // Return cached version or fetch from network
                                         if (response) {
                                             return response;
                                         }
-                                        return fetch(event.request);
+                                        
+                                        return fetch(event.request)
+                                            .then(response => {
+                                                // Don't cache non-successful responses
+                                                if (!response || response.status !== 200 || response.type !== 'basic') {
+                                                    return response;
+                                                }
+
+                                                // Clone the response
+                                                const responseToCache = response.clone();
+
+                                                caches.open(CACHE_NAME)
+                                                    .then(cache => {
+                                                        cache.put(event.request, responseToCache);
+                                                    });
+
+                                                return response;
+                                            });
+                                    })
+                                    .catch(() => {
+                                        // Return offline page if available
+                                        if (event.request.destination === 'document') {
+                                            return caches.match('/KipApp.html');
+                                        }
                                     })
                             );
                         });
@@ -1949,12 +1977,29 @@
                     const swUrl = URL.createObjectURL(blob);
 
                     const registration = await navigator.serviceWorker.register(swUrl);
-                    console.log('ServiceWorker registration successful');
+                    console.log('ServiceWorker registration successful:', registration);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        console.log('New service worker found!');
+                        showNotification('Aplikasi diperbarui! Restart untuk mendapatkan versi terbaru.', 'info');
+                    });
+                    
                 } catch (error) {
                     console.log('ServiceWorker registration failed: ', error);
                 }
             });
         }
+
+        // Show install prompt for desktop users on initial load
+        window.addEventListener('load', () => {
+            // For desktop users, show install info after 5 seconds
+            if (!isMobile() && !isStandalone() && !isInstallPromptDismissed()) {
+                setTimeout(() => {
+                    showNotification('Aplikasi ini dapat diinstall sebagai PWA! Cek menu browser untuk opsi install.', 'info');
+                }, 8000);
+            }
+        });
     </script>
 </body>
 
