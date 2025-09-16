@@ -741,6 +741,48 @@
             transition: width 0.3s ease;
         }
 
+        /* Checkbox SKP styling */
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--very-light);
+            border-radius: 8px;
+            border: 1px solid var(--light);
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-container:hover {
+            background: var(--light);
+        }
+
+        .checkbox-input {
+            width: 20px !important;
+            height: 20px !important;
+            margin: 0 !important;
+            accent-color: var(--primary-main);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label {
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray-700);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .checkbox-description {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
         /* Submit button */
         .submit-button {
             width: 100%;
@@ -1209,6 +1251,25 @@
                             </div>
                         </div>
 
+                        <!-- 7. CHECKBOX MASUKAN KE CAPAIAN SKP -->
+                        <div class="input-group">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="masukan-skp-checkbox" name="masukanKeCapaianSKP" 
+                                       class="checkbox-input">
+                                <div>
+                                    <label for="masukan-skp-checkbox" class="checkbox-label">
+                                        <svg class="icon" viewBox="0 0 24 24">
+                                            <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+                                        </svg>
+                                        Masukan ke capaian SKP
+                                    </label>
+                                    <div class="checkbox-description">
+                                        Centang jika kegiatan ini akan dimasukkan ke dalam capaian SKP Anda
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <button type="submit" class="submit-button" id="submit-btn">
                             <svg class="icon" viewBox="0 0 24 24" style="margin-right: 8px;">
                                 <path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" />
@@ -1249,7 +1310,7 @@
 
     <script>
         // GANTI URL INI DENGAN URL GOOGLE APPS SCRIPT ANDA
-        const scriptURL = 'https://script.google.com/macros/s/AKfycby1oWCFNPr1SoDGMBQh_0XRLx37hS0PJ83vIdLvMsaAM4sCjxRqEkVLMdWMxTBql8A03A/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzN2td4XQ7eYUgqbI8de3bKiej21dk4fgUCHz1OoRrpWwGe7NpIbr352NMfvWOEwMl5vw/exec';
 
         // PWA Variables
         let deferredPrompt;
@@ -1750,6 +1811,7 @@
             const progres = document.getElementById('progres').value;
             const capaian = document.getElementById('capaian').value.trim();
             const dokumenLink = document.getElementById('dokumen_link').value.trim();
+            const masukanKeCapaianSKP = document.getElementById('masukan-skp-checkbox').checked; // CHECKBOX BARU
 
             // Validation
             if (!tanggal1 || !rencanaKinerja || !kegiatan || !progres || !capaian) {
@@ -1802,6 +1864,7 @@
                 formData.append('progres', progres);
                 formData.append('capaian', capaian);
                 formData.append('uploadMode', uploadMode);
+                formData.append('masukanKeCapaianSKP', masukanKeCapaianSKP); // KIRIM NILAI CHECKBOX
 
                 if (uploadMode === 'link') {
                     formData.append('dokumenLink', dokumenLink);
@@ -1880,6 +1943,9 @@
             // Reset dropdown
             rencanaInput.value = '';
             dropdown.closeDropdown();
+
+            // Reset checkbox
+            document.getElementById('masukan-skp-checkbox').checked = false;
 
             // Reset date mode
             isPeriodMode = false;
