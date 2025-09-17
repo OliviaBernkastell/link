@@ -27,6 +27,10 @@
     <link rel="apple-touch-icon" sizes="60x60" href="icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="icon.png">
 
+    <!-- Compression Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/2.0.2/browser-image-compression.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
     <!-- Inline Manifest -->
     <link rel="manifest"
         href="data:application/json;base64,ewogICJuYW1lIjogIkVudHJpIEtpUCBBcHAiLAogICJzaG9ydF9uYW1lIjogIkVudHJpIEtpUCIsCiAgImRlc2NyaXB0aW9uIjogIkFwbGlrYXNpIHVudHVrIG1lbGFjYWsgZGFuIG1lbmdlbG9sYSBraW5lcmphIHBlZ2F3YWkgZGVuZ2FuIG11ZGFoIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyZDZhNGYiLAogICJ0aGVtZV9jb2xvciI6ICIjMmQ2YTRmIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQtcHJpbWFyeSIsCiAgInNjb3BlIjogIi8iLAogICJsYW5nIjogImlkIiwKICAiZGlyIjogImx0ciIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjcyeDcyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJpY29uLnBuZyIsIAogICAgICAic2l6ZXMiOiAiOTZ4OTYiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjEyOHgxMjgiLCAKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJpY29uLnBuZyIsCiAgICAgICJzaXplcyI6ICIxNDR4MTQ0IiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwgCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaWNvbi5wbmciLAogICAgICAic2l6ZXMiOiAiMTUyeDE1MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaWNvbi5wbmciLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaWNvbi5wbmciLCAKICAgICAgInNpemVzIjogIjM4NHgzODQiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic3JjIjogImljb24ucG5nIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXSwKICAiY2F0ZWdvcmllcyI6IFsicHJvZHVjdGl2aXR5IiwgImJ1c2luZXNzIl0KfQ==">
@@ -741,6 +745,43 @@
             transition: width 0.3s ease;
         }
 
+        /* Compression info display */
+        .compression-info {
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 6px;
+            border: 1px solid var(--secondary);
+            display: none;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+
+        .compression-info .compression-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .compression-info .compression-stats:last-child {
+            margin-bottom: 0;
+        }
+
+        .compression-info .compression-ratio {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .compression-success {
+            background: #d1fae5 !important;
+            border-color: #34d399 !important;
+        }
+
+        .compression-warning {
+            background: #fef3c7 !important;
+            border-color: #fbbf24 !important;
+        }
+
         /* Checkbox SKP styling */
         .checkbox-container {
             display: flex;
@@ -1242,6 +1283,22 @@
                                 </div>
                             </div>
 
+                            <!-- Compression Info -->
+                            <div class="compression-info" id="compression-info">
+                                <div class="compression-stats">
+                                    <span>Original:</span>
+                                    <span id="original-size">0 MB</span>
+                                </div>
+                                <div class="compression-stats">
+                                    <span>Compressed:</span>
+                                    <span id="compressed-size">0 MB</span>
+                                </div>
+                                <div class="compression-stats">
+                                    <span>Saved:</span>
+                                    <span class="compression-ratio" id="compression-ratio">0%</span>
+                                </div>
+                            </div>
+
                             <!-- Progress Bar -->
                             <div class="progress-container" id="progress-container">
                                 <div class="progress-label" id="progress-label">Uploading...</div>
@@ -1350,12 +1407,23 @@
         const progressLabel = document.getElementById('progress-label');
         const submitBtn = document.getElementById('submit-btn');
 
+        // Compression elements
+        const compressionInfo = document.getElementById('compression-info');
+        const originalSizeEl = document.getElementById('original-size');
+        const compressedSizeEl = document.getElementById('compressed-size');
+        const compressionRatioEl = document.getElementById('compression-ratio');
+
         let selectedFile = null;
+        let originalFile = null; // Store original file for comparison
         let uploadMode = 'link';
         let isPeriodMode = false;
         let rencanaKinerjaOptions = [];
         let filteredOptions = [];
         let selectedIndex = -1;
+
+        // Check if compression libraries are loaded
+        let imageCompressionAvailable = typeof imageCompression !== 'undefined';
+        let pdfLibAvailable = typeof PDFLib !== 'undefined';
 
         // PWA Installation Logic
         function isMobile() {
@@ -1604,6 +1672,92 @@
             }
         }
 
+        // Compression functions
+        async function compressImage(file) {
+            if (!imageCompressionAvailable) {
+                console.warn('Image compression library not available');
+                return file;
+            }
+
+            try {
+                const options = {
+                    maxSizeMB: 1, // Max 1MB
+                    maxWidthOrHeight: 1920, // Max dimensions
+                    useWebWorker: true, // Use web worker for better performance
+                    initialQuality: 0.8 // Initial quality
+                };
+
+                const compressedFile = await imageCompression(file, options);
+                return compressedFile;
+            } catch (error) {
+                console.error('Image compression error:', error);
+                throw error;
+            }
+        }
+
+        async function compressPDF(file) {
+            if (!pdfLibAvailable) {
+                console.warn('PDF library not available');
+                return file;
+            }
+
+            try {
+                // Read the PDF file
+                const arrayBuffer = await file.arrayBuffer();
+                const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+                
+                // Get document info
+                const pageCount = pdfDoc.getPageCount();
+                
+                // Simple optimization - remove unused objects and compress
+                // This is basic compression, results may vary
+                const compressedPdfBytes = await pdfDoc.save({
+                    useObjectStreams: false,
+                    addDefaultPage: false,
+                    objectsPerTick: 50
+                });
+
+                // Create compressed file
+                const compressedFile = new File([compressedPdfBytes], file.name, {
+                    type: 'application/pdf'
+                });
+
+                return compressedFile;
+            } catch (error) {
+                console.error('PDF compression error:', error);
+                // If compression fails, return original file
+                return file;
+            }
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showCompressionInfo(originalFile, compressedFile) {
+            const originalSize = originalFile.size;
+            const compressedSize = compressedFile.size;
+            const savings = ((originalSize - compressedSize) / originalSize * 100).toFixed(1);
+
+            originalSizeEl.textContent = formatFileSize(originalSize);
+            compressedSizeEl.textContent = formatFileSize(compressedSize);
+            compressionRatioEl.textContent = `${savings}%`;
+
+            // Add success or warning class based on compression ratio
+            compressionInfo.classList.remove('compression-success', 'compression-warning');
+            if (savings > 20) {
+                compressionInfo.classList.add('compression-success');
+            } else if (savings > 5) {
+                compressionInfo.classList.add('compression-warning');
+            }
+
+            compressionInfo.style.display = 'block';
+        }
+
         // Date toggle functionality
         dateToggle.addEventListener('click', () => {
             isPeriodMode = !isPeriodMode;
@@ -1636,7 +1790,9 @@
 
                 // Reset file selection
                 selectedFile = null;
+                originalFile = null;
                 filePreview.style.display = 'none';
+                compressionInfo.style.display = 'none';
                 fileUpload.value = '';
                 photoCapture.value = '';
 
@@ -1770,33 +1926,114 @@
             }
         });
 
-        function handleFileSelection(file) {
-            // Validate file size (max 10MB)
+        async function handleFileSelection(file) {
+            // Validate file size (max 10MB for original file)
             if (file.size > 10 * 1024 * 1024) {
                 showNotification('Ukuran file terlalu besar! Maksimal 10MB', 'error');
                 return;
             }
 
-            selectedFile = file;
+            // Store original file
+            originalFile = file;
 
-            // Show file preview
-            const fileSize = (file.size / 1024 / 1024).toFixed(2);
-            previewName.textContent = file.name;
-            previewSize.textContent = `${fileSize} MB • ${file.type}`;
+            // Show progress for compression
+            progressContainer.style.display = 'block';
+            updateProgress(10, 'Memproses file...');
 
-            // Show image preview if it's an image
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    previewImage.src = e.target.result;
-                    previewImage.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                previewImage.style.display = 'none';
+            try {
+                let processedFile = file;
+
+                // Compress based on file type
+                if (file.type.startsWith('image/')) {
+                    updateProgress(30, 'Mengkompres gambar...');
+                    processedFile = await compressImage(file);
+                    
+                    if (processedFile.size < file.size) {
+                        showNotification('Gambar berhasil dikompres!', 'success');
+                    } else {
+                        showNotification('Gambar sudah optimal, tidak perlu kompresi.', 'info');
+                    }
+                } else if (file.type === 'application/pdf') {
+                    updateProgress(30, 'Mengkompres PDF...');
+                    processedFile = await compressPDF(file);
+                    
+                    // Check if compression was effective
+                    if (processedFile.size < file.size) {
+                        showNotification('PDF berhasil dikompres!', 'success');
+                    } else {
+                        showNotification('PDF sudah optimal, tidak perlu kompresi.', 'info');
+                    }
+                } else {
+                    updateProgress(30, 'File siap digunakan...');
+                    showNotification('File siap untuk upload.', 'info');
+                }
+
+                updateProgress(70, 'Menyiapkan preview...');
+
+                // Set the processed file as selected
+                selectedFile = processedFile;
+
+                // Show file preview
+                const fileSize = formatFileSize(processedFile.size);
+                previewName.textContent = processedFile.name;
+                previewSize.textContent = `${fileSize} • ${processedFile.type}`;
+
+                // Show image preview if it's an image
+                if (processedFile.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                    };
+                    reader.readAsDataURL(processedFile);
+                } else {
+                    previewImage.style.display = 'none';
+                }
+
+                // Show compression info if file was compressed
+                if (originalFile.size !== processedFile.size) {
+                    showCompressionInfo(originalFile, processedFile);
+                }
+
+                filePreview.style.display = 'block';
+                updateProgress(100, 'Selesai!');
+
+                // Hide progress after a short delay
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    updateProgress(0, 'Uploading...');
+                }, 1500);
+
+            } catch (error) {
+                console.error('Error processing file:', error);
+                showNotification('Gagal memproses file: ' + error.message, 'error');
+                
+                // Use original file if compression fails
+                selectedFile = file;
+                
+                // Show basic preview
+                const fileSize = formatFileSize(file.size);
+                previewName.textContent = file.name;
+                previewSize.textContent = `${fileSize} • ${file.type}`;
+                
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImage.style.display = 'none';
+                }
+                
+                filePreview.style.display = 'block';
+                
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    updateProgress(0, 'Uploading...');
+                }, 1500);
             }
-
-            filePreview.style.display = 'block';
         }
 
         // Form submission
@@ -1811,7 +2048,7 @@
             const progres = document.getElementById('progres').value;
             const capaian = document.getElementById('capaian').value.trim();
             const dokumenLink = document.getElementById('dokumen_link').value.trim();
-            const masukanKeCapaianSKP = document.getElementById('masukan-skp-checkbox').checked; // CHECKBOX BARU
+            const masukanKeCapaianSKP = document.getElementById('masukan-skp-checkbox').checked;
 
             // Validation
             if (!tanggal1 || !rencanaKinerja || !kegiatan || !progres || !capaian) {
@@ -1864,12 +2101,12 @@
                 formData.append('progres', progres);
                 formData.append('capaian', capaian);
                 formData.append('uploadMode', uploadMode);
-                formData.append('masukanKeCapaianSKP', masukanKeCapaianSKP); // KIRIM NILAI CHECKBOX
+                formData.append('masukanKeCapaianSKP', masukanKeCapaianSKP);
 
                 if (uploadMode === 'link') {
                     formData.append('dokumenLink', dokumenLink);
                     updateProgress(75, 'Menyimpan data...');
-                } if (selectedFile) {
+                } else if (selectedFile) {
                     updateProgress(50, 'Mengkonversi file...');
                     const base64 = await fileToBase64(selectedFile);
 
@@ -1895,6 +2132,8 @@
                     formData.append('fileName', newFileName); // Kirim nama file yang baru
                     formData.append('fileData', base64);
                     formData.append('fileType', selectedFile.type);
+                    formData.append('originalSize', originalFile ? originalFile.size : selectedFile.size);
+                    formData.append('compressedSize', selectedFile.size);
                     updateProgress(75, 'Mengupload file...');
                 }
 
@@ -1938,7 +2177,9 @@
         function resetForm() {
             form.reset();
             selectedFile = null;
+            originalFile = null;
             filePreview.style.display = 'none';
+            compressionInfo.style.display = 'none';
 
             // Reset dropdown
             rencanaInput.value = '';
@@ -2012,12 +2253,14 @@
                 try {
                     // Create comprehensive service worker
                     const swCode = `
-                        const CACHE_NAME = 'entri-kip-app-v3';
+                        const CACHE_NAME = 'entri-kip-app-v4';
                         const urlsToCache = [
                             '/',
                             '/KipApp.html',
                             '/icon.png',
-                            'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
+                            'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
+                            'https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/2.0.2/browser-image-compression.min.js',
+                            'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'
                         ];
 
                         self.addEventListener('install', event => {
@@ -2116,7 +2359,25 @@
                 }, 8000);
             }
         });
+
+        // Check if compression libraries are loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                imageCompressionAvailable = typeof imageCompression !== 'undefined';
+                pdfLibAvailable = typeof PDFLib !== 'undefined';
+
+                if (!imageCompressionAvailable) {
+                    console.warn('Image compression library not loaded');
+                    showNotification('Library kompresi gambar tidak dapat dimuat. Gambar akan diupload tanpa kompresi.', 'warning');
+                }
+                
+                if (!pdfLibAvailable) {
+                    console.warn('PDF library not loaded');
+                    showNotification('Library PDF tidak dapat dimuat. PDF akan diupload tanpa kompresi.', 'warning');
+                }
+            }, 2000); // Wait 2 seconds for libraries to load
+        });
     </script>
 </body>
 
-</html>
+</html>  
