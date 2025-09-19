@@ -28,7 +28,8 @@
     <link rel="apple-touch-icon" sizes="57x57" href="icon.png">
 
     <!-- Compression Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/2.0.2/browser-image-compression.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/2.0.2/browser-image-compression.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
     <!-- Inline Manifest -->
@@ -42,6 +43,7 @@
         content="data:application/xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGJyb3dzZXJjb25maWc+CiAgICA8bXNhcHBsaWNhdGlvbj4KICAgICAgICA8dGlsZT4KICAgICAgICAgICAgPHNxdWFyZTcweDcwbG9nbyBzcmM9Imljb24ucG5nIi8+CiAgICAgICAgICAgIDxzcXVhcmUxNTB4MTUwbG9nbyBzcmM9Imljb24ucG5nIi8+CiAgICAgICAgICAgIDxzcXVhcmUzMTB4MzEwbG9nbyBzcmM9Imljb24ucG5nIi8+CiAgICAgICAgICAgIDx3aWRlMzEweDE1MGxvZ28gc3JjPSJpY29uLnBuZyIvPgogICAgICAgICAgICA8VGlsZUNvbG9yPiMyZDZhNGY8L1RpbGVDb2xvcj4KICAgICAgICA8L3RpbGU+CiAgICA8L21zYXBwbGljYXRpb24+CjwvYnJvd3NlcmNvbmZpZz4=">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -81,6 +83,438 @@
             padding: 24px;
             color: var(--gray-800);
             line-height: 1.6;
+            position: relative;
+        }
+
+        /* Fireflies Animation - Pure CSS */
+        .fireflies {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+            overflow: hidden;
+        }
+
+        .firefly {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 24px #ffd700;
+        }
+
+        /* Size variations for different fireflies */
+        .firefly:nth-child(1) {
+            width: 8px;
+            height: 8px;
+            box-shadow: 0 0 12px #ffd700, 0 0 24px #ffd700, 0 0 36px #ffd700;
+        }
+
+        .firefly:nth-child(2) {
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 6px #ffd700, 0 0 12px #ffd700, 0 0 18px #ffd700;
+        }
+
+        .firefly:nth-child(3) {
+            width: 7px;
+            height: 7px;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700;
+        }
+
+        .firefly:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 24px #ffd700;
+        }
+
+        .firefly:nth-child(5) {
+            width: 9px;
+            height: 9px;
+            box-shadow: 0 0 14px #ffd700, 0 0 28px #ffd700, 0 0 42px #ffd700;
+        }
+
+        .firefly:nth-child(6) {
+            width: 6px;
+            height: 6px;
+            box-shadow: 0 0 9px #ffd700, 0 0 18px #ffd700, 0 0 27px #ffd700;
+        }
+
+        .firefly:nth-child(7) {
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 6px #ffd700, 0 0 12px #ffd700, 0 0 18px #ffd700;
+        }
+
+        .firefly:nth-child(8) {
+            width: 8px;
+            height: 8px;
+            box-shadow: 0 0 12px #ffd700, 0 0 24px #ffd700, 0 0 36px #ffd700;
+        }
+
+        .firefly:nth-child(9) {
+            width: 5px;
+            height: 5px;
+            box-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 24px #ffd700;
+        }
+
+        .firefly:nth-child(10) {
+            width: 7px;
+            height: 7px;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700;
+        }
+
+        /* Firefly animations with different paths */
+        @keyframes firefly-1 {
+            0% {
+                transform: translateX(0vw) translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            10% {
+                transform: translateX(10vw) translateY(90vh) scale(1);
+            }
+
+            20% {
+                transform: translateX(5vw) translateY(80vh) scale(0.8);
+            }
+
+            30% {
+                transform: translateX(15vw) translateY(70vh) scale(1.2);
+            }
+
+            40% {
+                transform: translateX(8vw) translateY(60vh) scale(0.9);
+            }
+
+            50% {
+                transform: translateX(20vw) translateY(50vh) scale(1.1);
+            }
+
+            60% {
+                transform: translateX(12vw) translateY(40vh) scale(0.7);
+            }
+
+            70% {
+                transform: translateX(25vw) translateY(30vh) scale(1.3);
+            }
+
+            80% {
+                transform: translateX(18vw) translateY(20vh) scale(0.8);
+            }
+
+            90% {
+                transform: translateX(30vw) translateY(10vh) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(35vw) translateY(-10vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes firefly-2 {
+            0% {
+                transform: translateX(10vw) translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            10% {
+                transform: translateX(25vw) translateY(85vh) scale(1);
+            }
+
+            20% {
+                transform: translateX(15vw) translateY(75vh) scale(1.2);
+            }
+
+            30% {
+                transform: translateX(30vw) translateY(65vh) scale(0.8);
+            }
+
+            40% {
+                transform: translateX(20vw) translateY(55vh) scale(1.1);
+            }
+
+            50% {
+                transform: translateX(35vw) translateY(45vh) scale(0.9);
+            }
+
+            60% {
+                transform: translateX(25vw) translateY(35vh) scale(1.3);
+            }
+
+            70% {
+                transform: translateX(40vw) translateY(25vh) scale(0.7);
+            }
+
+            80% {
+                transform: translateX(30vw) translateY(15vh) scale(1);
+            }
+
+            90% {
+                transform: translateX(45vw) translateY(5vh) scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(50vw) translateY(-10vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes firefly-3 {
+            0% {
+                transform: translateX(20vw) translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            10% {
+                transform: translateX(5vw) translateY(88vh) scale(1);
+            }
+
+            20% {
+                transform: translateX(35vw) translateY(76vh) scale(0.9);
+            }
+
+            30% {
+                transform: translateX(10vw) translateY(64vh) scale(1.2);
+            }
+
+            40% {
+                transform: translateX(40vw) translateY(52vh) scale(0.7);
+            }
+
+            50% {
+                transform: translateX(15vw) translateY(40vh) scale(1.1);
+            }
+
+            60% {
+                transform: translateX(45vw) translateY(28vh) scale(0.8);
+            }
+
+            70% {
+                transform: translateX(20vw) translateY(16vh) scale(1.3);
+            }
+
+            80% {
+                transform: translateX(50vw) translateY(8vh) scale(0.9);
+            }
+
+            90% {
+                transform: translateX(25vw) translateY(-2vh) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(55vw) translateY(-15vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes firefly-4 {
+            0% {
+                transform: translateX(30vw) translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            8% {
+                opacity: 1;
+            }
+
+            15% {
+                transform: translateX(45vw) translateY(82vh) scale(1.1);
+            }
+
+            25% {
+                transform: translateX(25vw) translateY(70vh) scale(0.8);
+            }
+
+            35% {
+                transform: translateX(50vw) translateY(58vh) scale(1.2);
+            }
+
+            45% {
+                transform: translateX(30vw) translateY(46vh) scale(0.9);
+            }
+
+            55% {
+                transform: translateX(55vw) translateY(34vh) scale(1);
+            }
+
+            65% {
+                transform: translateX(35vw) translateY(22vh) scale(1.3);
+            }
+
+            75% {
+                transform: translateX(60vw) translateY(12vh) scale(0.7);
+            }
+
+            85% {
+                transform: translateX(40vw) translateY(2vh) scale(1.1);
+            }
+
+            95% {
+                transform: translateX(65vw) translateY(-8vh) scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(70vw) translateY(-18vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes firefly-5 {
+            0% {
+                transform: translateX(40vw) translateY(100vh) scale(0);
+                opacity: 0;
+            }
+
+            6% {
+                opacity: 1;
+            }
+
+            12% {
+                transform: translateX(20vw) translateY(86vh) scale(1);
+            }
+
+            24% {
+                transform: translateX(55vw) translateY(72vh) scale(0.9);
+            }
+
+            36% {
+                transform: translateX(25vw) translateY(58vh) scale(1.3);
+            }
+
+            48% {
+                transform: translateX(60vw) translateY(44vh) scale(0.7);
+            }
+
+            60% {
+                transform: translateX(30vw) translateY(30vh) scale(1.1);
+            }
+
+            72% {
+                transform: translateX(65vw) translateY(18vh) scale(0.8);
+            }
+
+            84% {
+                transform: translateX(35vw) translateY(6vh) scale(1.2);
+            }
+
+            96% {
+                transform: translateX(70vw) translateY(-6vh) scale(0.9);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(75vw) translateY(-20vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Apply animations to fireflies */
+        .firefly:nth-child(1) {
+            animation: firefly-1 12s linear infinite;
+            animation-delay: 0s;
+            left: 0%;
+        }
+
+        .firefly:nth-child(2) {
+            animation: firefly-2 15s linear infinite;
+            animation-delay: 2s;
+            left: 10%;
+        }
+
+        .firefly:nth-child(3) {
+            animation: firefly-3 18s linear infinite;
+            animation-delay: 4s;
+            left: 20%;
+        }
+
+        .firefly:nth-child(4) {
+            animation: firefly-4 14s linear infinite;
+            animation-delay: 1s;
+            left: 30%;
+        }
+
+        .firefly:nth-child(5) {
+            animation: firefly-5 16s linear infinite;
+            animation-delay: 3s;
+            left: 40%;
+        }
+
+        .firefly:nth-child(6) {
+            animation: firefly-1 13s linear infinite;
+            animation-delay: 5s;
+            left: 50%;
+        }
+
+        .firefly:nth-child(7) {
+            animation: firefly-2 17s linear infinite;
+            animation-delay: 6s;
+            left: 60%;
+        }
+
+        .firefly:nth-child(8) {
+            animation: firefly-3 11s linear infinite;
+            animation-delay: 2.5s;
+            left: 70%;
+        }
+
+        .firefly:nth-child(9) {
+            animation: firefly-4 19s linear infinite;
+            animation-delay: 4.5s;
+            left: 80%;
+        }
+
+        .firefly:nth-child(10) {
+            animation: firefly-5 14.5s linear infinite;
+            animation-delay: 1.5s;
+            left: 90%;
+        }
+
+        /* Desktop-specific styles with wallpaper and fireflies */
+        @media (min-width: 1024px) {
+            .fireflies {
+                display: block;
+            }
+
+            body {
+                background: url('wallpaper.png') center center fixed;
+                background-size: cover;
+            }
+
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, rgba(26, 70, 53, 0.15) 0%, rgba(45, 106, 79, 0.1) 25%, rgba(64, 145, 108, 0.05) 75%, rgba(116, 198, 157, 0.05) 100%);
+                z-index: 0;
+                pointer-events: none;
+            }
         }
 
         .container {
@@ -91,6 +525,8 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             overflow: hidden;
             backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
         }
 
         .header {
@@ -1039,6 +1475,20 @@
 </head>
 
 <body>
+    <!-- Fireflies container -->
+    <div class="fireflies" id="fireflies">
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+        <div class="firefly"></div>
+    </div>
+
     <!-- PWA Install Prompt -->
     <div class="pwa-install-container" id="pwa-install-container">
         <button class="pwa-install-button" id="pwa-install-button">
@@ -1311,12 +1761,13 @@
                         <!-- 7. CHECKBOX MASUKAN KE CAPAIAN SKP -->
                         <div class="input-group">
                             <div class="checkbox-container">
-                                <input type="checkbox" id="masukan-skp-checkbox" name="masukanKeCapaianSKP" 
-                                       class="checkbox-input">
+                                <input type="checkbox" id="masukan-skp-checkbox" name="masukanKeCapaianSKP"
+                                    class="checkbox-input">
                                 <div>
                                     <label for="masukan-skp-checkbox" class="checkbox-label">
                                         <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+                                            <path
+                                                d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
                                         </svg>
                                         Masukan ke capaian SKP
                                     </label>
@@ -1705,10 +2156,10 @@
                 // Read the PDF file
                 const arrayBuffer = await file.arrayBuffer();
                 const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-                
+
                 // Get document info
                 const pageCount = pdfDoc.getPageCount();
-                
+
                 // Simple optimization - remove unused objects and compress
                 // This is basic compression, results may vary
                 const compressedPdfBytes = await pdfDoc.save({
@@ -1947,7 +2398,7 @@
                 if (file.type.startsWith('image/')) {
                     updateProgress(30, 'Mengkompres gambar...');
                     processedFile = await compressImage(file);
-                    
+
                     if (processedFile.size < file.size) {
                         showNotification('Gambar berhasil dikompres!', 'success');
                     } else {
@@ -1956,7 +2407,7 @@
                 } else if (file.type === 'application/pdf') {
                     updateProgress(30, 'Mengkompres PDF...');
                     processedFile = await compressPDF(file);
-                    
+
                     // Check if compression was effective
                     if (processedFile.size < file.size) {
                         showNotification('PDF berhasil dikompres!', 'success');
@@ -2007,15 +2458,15 @@
             } catch (error) {
                 console.error('Error processing file:', error);
                 showNotification('Gagal memproses file: ' + error.message, 'error');
-                
+
                 // Use original file if compression fails
                 selectedFile = file;
-                
+
                 // Show basic preview
                 const fileSize = formatFileSize(file.size);
                 previewName.textContent = file.name;
                 previewSize.textContent = `${fileSize} • ${file.type}`;
-                
+
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
@@ -2026,9 +2477,9 @@
                 } else {
                     previewImage.style.display = 'none';
                 }
-                
+
                 filePreview.style.display = 'block';
-                
+
                 setTimeout(() => {
                     progressContainer.style.display = 'none';
                     updateProgress(0, 'Uploading...');
@@ -2258,6 +2709,7 @@
                             '/',
                             '/KipApp.html',
                             '/icon.png',
+                            '/wallpaper.png',
                             'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
                             'https://cdnjs.cloudflare.com/ajax/libs/browser-image-compression/2.0.2/browser-image-compression.min.js',
                             'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'
@@ -2370,14 +2822,23 @@
                     console.warn('Image compression library not loaded');
                     showNotification('Library kompresi gambar tidak dapat dimuat. Gambar akan diupload tanpa kompresi.', 'warning');
                 }
-                
+
                 if (!pdfLibAvailable) {
                     console.warn('PDF library not loaded');
                     showNotification('Library PDF tidak dapat dimuat. PDF akan diupload tanpa kompresi.', 'warning');
                 }
             }, 2000); // Wait 2 seconds for libraries to load
         });
+
+        // Desktop fireflies message
+        window.addEventListener('load', () => {
+            if (window.innerWidth >= 1024) {
+                setTimeout(() => {
+                    showNotification('✨ Fireflies animation active on desktop! Enjoy the magical experience.', 'info');
+                }, 3000);
+            }
+        });
     </script>
 </body>
 
-</html>  
+</html>
